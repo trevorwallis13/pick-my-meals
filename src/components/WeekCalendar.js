@@ -41,13 +41,13 @@ const WeekCalendar = () => {
                 <div className='flex-col f-al-cen'>
                     <h3>Calendar</h3>
                     <div className={styles.calendar}>
-                        <DayOfWeek day='Monday' mealId={mealIds[0]} />
-                        <DayOfWeek day='Tuesday' mealId={mealIds[1]} />
-                        <DayOfWeek day='Wednesday' mealId={mealIds[2]} />
-                        <DayOfWeek day='Thursday' mealId={mealIds[3]} />
-                        <DayOfWeek day='Friday' mealId={mealIds[4]} />
-                        <DayOfWeek day='Saturday' mealId={mealIds[5]} />
-                        <DayOfWeek day='Sunday' mealId={mealIds[6]} />
+                        <DayOfWeek day='Mon' mealId={mealIds[0]} />
+                        <DayOfWeek day='Tues' mealId={mealIds[1]} />
+                        <DayOfWeek day='Wed' mealId={mealIds[2]} />
+                        <DayOfWeek day='Thurs' mealId={mealIds[3]} />
+                        <DayOfWeek day='Fri' mealId={mealIds[4]} />
+                        <DayOfWeek day='Sat' mealId={mealIds[5]} />
+                        <DayOfWeek day='Sun' mealId={mealIds[6]} />
                     </div>
                 </div>
                 <div className={styles.unusedMeals}>

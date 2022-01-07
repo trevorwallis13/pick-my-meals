@@ -1,0 +1,16 @@
+.small-meal-card {
+    h3 {
+        font-weight: 300;
+        font-size: 1rem;
+    }
+
+    box-sizing: border-box;
+    border: 2px solid rgb(220, 220, 220);
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px gray;
+    width: 100%;
+    max-width: 200px;
+    background-color: rgb(243, 240, 255);
+    padding: 10px 10px;
+    text-align: center;
+}

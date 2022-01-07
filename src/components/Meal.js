@@ -3,9 +3,9 @@ import styles from '../styles/meal.module.css';
 
 const Meal = ({ name, img, time }) => {
     return (
-        <div className={styles.meal}>
+        <div className={styles.meal} id="meal-card">
             
-            <div className={styles.imgContainer} 
+            <div className={`${styles.imgContainer} meal-img`} 
                 style={{
                     backgroundImage: `url('${img}')`,
                     backgroundPosition: 'center',

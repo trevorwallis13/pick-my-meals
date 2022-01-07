@@ -5,5 +5,8 @@
    justify-content: center;
    gap: 1rem;
    max-width: 265px;
-   border: 1px solid red;
+}
+
+.unusedMealsContainer #meal-card {
+   opacity: 50%;
 }
