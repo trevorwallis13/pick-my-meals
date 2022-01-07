@@ -1,0 +1,13 @@
+.day {
+    border: 1px solid lightcyan;
+    border-radius: 5px;
+    background-color: rgb(225, 225, 250);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 250px;
+    height: 350px;
+    padding: .5em 0;
+}
