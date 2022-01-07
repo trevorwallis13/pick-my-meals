@@ -3,8 +3,8 @@
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 200px;
-    height: 270px;
+    width: 120px;
+    height: 175px;
     color: #03353f;
     box-shadow: 0 0 10px;
     border-radius: 10px;
@@ -14,7 +14,7 @@
 }
 
 .imgContainer {
-    height: 50%;
+    height: 40%;
     overflow: hidden;
 
 }
@@ -40,14 +40,23 @@
     margin: 0;
 }
 
+.meal h3, h4, p {
+    margin: 0;
+}
+
 .meal h3 {
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 5px;
 }
 
 .meal h4 {
     font-weight: 500;
+    font-size: .7rem;
     padding-bottom: .25em;
     color: #485a5eb7;
+}
+
+.meal p {
+    font-size: .7rem;
 }

@@ -1,6 +1,37 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.headerSection {
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.headerSection button {
+    background-color: rgb(55, 55, 109);
+    color: #fafafa;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: none;
+}
+
+.mealSection {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    width: 100%;
+}
+
 .calendar {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: .5em;
+    max-width: 750px;
 }
