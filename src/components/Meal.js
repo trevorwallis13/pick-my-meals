@@ -5,8 +5,12 @@ const Meal = ({ name, img, time }) => {
     return (
         <div className={styles.meal}>
             
-            <div className={styles.imgContainer}>
-                <img src={img} alt={name} />
+            <div className={styles.imgContainer} 
+                style={{
+                    backgroundImage: `url('${img}')`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover'
+                }}>
             </div>
             <div className={styles.info}>
                 <h3>{name}</h3>
