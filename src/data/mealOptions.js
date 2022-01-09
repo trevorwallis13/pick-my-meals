@@ -40,5 +40,29 @@ export const mealOptions = [
         name: 'Pizza',
         img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
         time: '20 min'
+    },
+    {
+        id: 8,
+        name: 'Venison tenderloin',
+        img: 'https://community.legendarywhitetails.com/wp-content/uploads/2018/09/Grilled-Backstrap-1-e1536946681885.png',
+        time: '1 hr 30 min'
+    },
+    {
+        id: 9,
+        name: 'Friend catfish',
+        img: 'https://hips.hearstapps.com/vidthumb/images/delish-fried-catfish-still004-1551716165.jpg?crop=0.763xw:0.678xh;0.0929xw,0.165xh&resize=1200:*',
+        time: '45 min'
+    },
+    {
+        id: 10,
+        name: 'Shrimp scampi',
+        img: 'https://recipes.net/wp-content/uploads/2021/08/shrimp-scampi-recipe-olive-garden-copycat.png',
+        time: '1 hr'
+    },
+    {
+        id: 11,
+        name: 'BBQ sandwhiches',
+        img: 'https://www.thespruceeats.com/thmb/SBCFcywcn8HQgtHzXLfngNKwqs0=/1800x1216/filters:fill(auto,1)/pulled-pork-and-slaw-on-plate-18-56a8b9625f9b58b7d0f49e73.jpg',
+        time: '3 hr'
     }
 ];

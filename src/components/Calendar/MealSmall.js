@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/MealSmall.scss';
+import '../../styles/MealSmall.scss';
 
 const MealSmall = ({ name }) => {
     return (
