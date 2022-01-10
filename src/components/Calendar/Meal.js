@@ -14,9 +14,9 @@ const Meal = ({ name, img, time }) => {
                 }}>
             </div>
             <div className='info'>
-                <h3>{name}</h3>
+                <h4>{name}</h4>
                 <div className='prep-time'>
-                    <h4>Prep time</h4>
+                    <h5>Prep time</h5>
                     <p>{time}</p>
                 </div>
             </div>

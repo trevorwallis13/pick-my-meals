@@ -1,5 +1,6 @@
 import React from 'react';
 import MealSmall from './MealSmall';
+import Meal from './Meal';
 import '../../styles/UnusedMeals.scss';
 
 const UnusedMeals = ({ unusedMeals, searchMeals }) => {
@@ -30,7 +31,7 @@ const UnusedMeals = ({ unusedMeals, searchMeals }) => {
     })
 
     const unusedMealComponents = searchUnusedMeals.map(meal => {
-        return <MealSmall key={meal.id} img={meal.img} name={meal.name} time={meal.time} />
+        return <Meal key={meal.id} img={meal.img} name={meal.name} time={meal.time} />
     });
    
     return (

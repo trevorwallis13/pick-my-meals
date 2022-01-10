@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import WeekCalendar from '../components/Calendar/WeekCalendar';
 import PickMeals from '../components/Calendar/PickMeals';
 import SearchMeal from '../components/Calendar/SearchMeal';
+import UnusedMeals from '../components/Calendar/UnusedMeals';
 
 //Data and functions
 import { randomMeals } from '../functions/randomMealIndices';
@@ -17,11 +18,16 @@ function App() {
   
   //State management - useState hooks
 
-  const [meals, setMeals] = useState(mealOptions);
+  const [meals, setMeals] = useState(
+    JSON.parse(localStorage.getItem("meals")) || mealOptions
+  );
   
-  const [calendarMeals, setCalendarMeals] = useState([]);
+  const [calendarMeals, setCalendarMeals] = useState(
+    JSON.parse(localStorage.getItem("calendarMeals")) || []
+  );
 
-  const [unusedMeals, setUnusedMeals] = useState(meals);
+  const [unusedMeals, setUnusedMeals] = useState(
+    JSON.parse(localStorage.getItem("unusedMeals")) || meals);
 
   const [searchMeals, setSearchMeals] = useState('');
 
@@ -33,8 +39,22 @@ function App() {
     setUnusedMeals(remainingMeals);
   }
 
-  // State management - useEffect hooks
+  // State management - useEffect on load
    
+
+  // State management - useEffect on change
+
+  useEffect(() => {
+    localStorage.setItem("calendarMeals", JSON.stringify(calendarMeals));
+  }, [calendarMeals]);
+
+  useEffect(() =>{
+    localStorage.setItem("unusedMeals", JSON.stringify(unusedMeals));
+  }, [unusedMeals]);
+
+  useEffect(() => {
+    localStorage.setItem("meals", JSON.stringify(meals));
+  }, [meals]);
 
   return (
     <main className='container'>
@@ -48,6 +68,12 @@ function App() {
           searchMeals={searchMeals}
           setSearchMeals={setSearchMeals}
       />
+
+      <UnusedMeals 
+          unusedMeals={unusedMeals} 
+          searchMeals={searchMeals}
+      />
+
       <WeekCalendar 
         calendarMeals={calendarMeals}
         unusedMeals={unusedMeals}
