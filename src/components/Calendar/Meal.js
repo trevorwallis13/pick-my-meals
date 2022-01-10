@@ -6,7 +6,7 @@ const Meal = ({ name, img, time }) => {
         <div className='meal'>
             <div className='img-container' 
                 style={{
-                    backgroundImage: `url(${img})`,
+                    backgroundImage: `url('${img}')`,
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                     height: '40%',

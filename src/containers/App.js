@@ -33,10 +33,16 @@ function App() {
     setUnusedMeals(remainingMeals);
   }
 
+  // State management - useEffect hooks
+   
+
   return (
     <main className='container'>
       <PickMeals 
           selectMeals={selectMeals}
+          meals={meals}
+          setMeals={setMeals}
+          setUnusedMeals={setUnusedMeals}
       />
       <SearchMeal 
           searchMeals={searchMeals}
