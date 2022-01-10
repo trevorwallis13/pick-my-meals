@@ -1,20 +1,21 @@
 import React from 'react';
-import styles from '../../styles/meal.module.css';
+import styles from '../../styles/meal.scss';
 
 const Meal = ({ name, img, time }) => {
     return (
-        <div className={styles.meal} id="meal-card">
-            
-            <div className={`${styles.imgContainer} meal-img`} 
+        <div className='meal'>
+            <div className='img-container' 
                 style={{
-                    backgroundImage: `url('${img}')`,
+                    backgroundImage: `url(${img})`,
                     backgroundPosition: 'center',
-                    backgroundSize: 'cover'
+                    backgroundSize: 'cover',
+                    height: '40%',
+                    overflow: 'hidden'
                 }}>
             </div>
-            <div className={styles.info}>
+            <div className='info'>
                 <h3>{name}</h3>
-                <div className={styles.prepTime}>
+                <div className='prep-time'>
                     <h4>Prep time</h4>
                     <p>{time}</p>
                 </div>

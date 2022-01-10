@@ -1,0 +1,43 @@
+.meal {
+    width: 120px;
+    height: 175px;
+    border: 2px solid lightblue;
+    border-radius: 10px;
+    box-shadow: 0 0 10px;
+    background-color: #fafafa;
+    color: #03353f;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .info {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 15px 3px;
+    }
+
+    .prepTime, h3, h4, p {
+        margin: 0;
+    }
+
+    h3 {
+        font-weight: 300;
+        font-size: 1rem;
+        padding: 5px;
+    }
+
+    h4 {
+        font-weight: 500;
+        font-size: .7rem;
+        padding-bottom: .25em;
+        color: #485a5eb7;
+    }
+
+    p {
+        font-size: .7rem;
+    }
+
+}

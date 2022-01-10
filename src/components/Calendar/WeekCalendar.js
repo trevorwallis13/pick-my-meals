@@ -4,7 +4,9 @@ import styles from '../../styles/WeekCalendar.module.css';
 import UnusedMeals from './UnusedMeals';
 
 
-const WeekCalendar = ({ mealIds, mealOptions, unusedMealIds, searchMeals }) => {
+const WeekCalendar = ({ calendarMeals, unusedMeals, searchMeals }) => {
+
+    console.log(`calendarMeals: ${calendarMeals}`);
 
     const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
@@ -12,8 +14,8 @@ const WeekCalendar = ({ mealIds, mealOptions, unusedMealIds, searchMeals }) => {
         return <DayOfWeek 
                     key={i} 
                     day={day} 
-                    mealId={mealIds[i]} 
-                    mealOptions={mealOptions} 
+                    calendarMeals={calendarMeals} 
+                    index={i}
                 />
     })
 
@@ -27,8 +29,7 @@ const WeekCalendar = ({ mealIds, mealOptions, unusedMealIds, searchMeals }) => {
             </div>
             <aside className={styles.unusedMeals}>
                 <UnusedMeals 
-                    mealIds={unusedMealIds} 
-                    mealOptions={mealOptions}
+                    unusedMeals={unusedMeals} 
                     searchMeals={searchMeals}
                 />
             </aside>

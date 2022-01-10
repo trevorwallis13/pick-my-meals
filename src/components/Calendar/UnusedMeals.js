@@ -2,18 +2,27 @@ import React from 'react';
 import MealSmall from './MealSmall';
 import '../../styles/UnusedMeals.scss';
 
-const UnusedMeals = ({ mealIds, mealOptions, searchMeals }) => {
+const UnusedMeals = ({ unusedMeals, searchMeals }) => {
 
-    const mealsAlphaSorted = mealIds.sort((a, b) => {
+     if (!unusedMeals.length) {
+        return (
+            <div className="unused-meals">
+                <h3>Meals</h3>
+                <p>Add meals to get started!</p>
+            </div>
+        )
+    }
+    
+    const mealsAlphaSorted = unusedMeals.sort((a, b) => {
 
-        let nameA = mealOptions[a].name.toLowerCase();
-        let nameB = mealOptions[b].name.toLowerCase();
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
 
         if (nameA === nameB) return 0;
         return nameA < nameB ? -1 : 1;
     });
 
-    const searchUnusedMeals = mealsAlphaSorted.map(idx => mealOptions[idx]).filter(meal => {
+    const searchUnusedMeals = mealsAlphaSorted.filter(meal => {
         const mealName = meal.name.toLowerCase();
         const searchVal = searchMeals.toLowerCase();
 

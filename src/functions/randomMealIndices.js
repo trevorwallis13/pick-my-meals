@@ -6,7 +6,21 @@ export const randomMealIndices = (mealOptions) => {
 
     while(randomizedIndices.length < 7) {
         const randIdx = indices.splice(Math.floor(Math.random() * indices.length), 1);
-        randomizedIndices.push(randIdx); 
+        randomizedIndices.push(...randIdx); 
     }
+
+
     return [randomizedIndices, indices]
+}
+
+export const randomMeals = (meals) => {
+    const allMeals = [...meals];
+    const randomMeals = [];
+
+    while (randomMeals.length < 7) {
+        let randMeal = allMeals.splice(Math.floor(Math.random() * allMeals.length), 1);
+        randomMeals.push(...randMeal);
+    }
+
+    return [randomMeals, allMeals];
 }

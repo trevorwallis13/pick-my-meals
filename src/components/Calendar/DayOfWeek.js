@@ -1,19 +1,23 @@
 import React from 'react';
 import Meal from './Meal';
-import styles from '../../styles/DayOfWeek.module.css';
+import '../../styles/DayOfWeek.scss';
 
-const DayOfWeek = ({ mealOptions, day, mealId }) => {
+const DayOfWeek = ({ index, day, calendarMeals }) => {
     
-    const meals = mealOptions.map(meal => {
-        return <Meal img={meal.img} name={meal.name} time={meal.time} />
-    });
+    // const dailyMeal = meal.map(meal => {
+    //     return <Meal img={meal.img} name={meal.name} time={meal.time} />
+    // });
+    let dailyMeal = '';
+
+    if(calendarMeals.length) {
+        const { img, name, time } = calendarMeals[index];
+        dailyMeal = <Meal img={img} name={name} time={time} />
+    }
     
     return (
-        <div className={styles.day}>
-            <div className={styles.header}>
-                <h2>{day}</h2>
-            </div>
-            {meals[mealId]}
+        <div className="dayOfWeek">
+            <h2>{day}</h2>
+            {dailyMeal}
         </div>
     )
 };
