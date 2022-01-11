@@ -1,0 +1,19 @@
+.modal-content {
+
+    .modal-body {
+        padding: .5rem 1rem;
+    }
+
+    label {
+        margin: 5px 0;
+    }
+
+    input {
+        margin-bottom: 10px;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+}

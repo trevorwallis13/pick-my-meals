@@ -8,8 +8,13 @@ const MealModal = ({ meals, setMeals, setUnusedMeals }) => {
     const [mealName, setMealName] = useState('');
     const [prepTime, setPrepTime] = useState('');
     const [imgUrl, setImgUrl] = useState('');
-    const handleClose = () => setShow(false);
+    const [addedMsg, setAddedMsg] = useState('');
     const handleShow = () => setShow(true);
+
+    const handleClose = () => {
+        setShow(false)
+        setAddedMsg('')
+    };
 
     const addMealHandler = () => {
         const mealIds = meals.map(meal => meal.id);
@@ -21,16 +26,17 @@ const MealModal = ({ meals, setMeals, setUnusedMeals }) => {
             time: prepTime
         }
 
-        setMeals((meals) => [...meals, newMeal]);
+        if (newMeal.name.length) {setMeals((meals) => [...meals, newMeal]);
         setUnusedMeals((unusedMeals) => [...unusedMeals, newMeal]);
         setMealName('');
         setPrepTime('');
-        setImgUrl('');
+        setImgUrl('');}
+        setAddedMsg(`Success! ${newMeal.name} added to list.`);
     };
 
     return (
-        <div>
-            <button onClick={handleShow}>Add new meal</button>
+        <div className="meal-modal">
+            <Button variant="outline-dark" size="lg" onClick={handleShow}>Add new meal</Button>
 
             <Modal
                 show={show}
@@ -50,7 +56,8 @@ const MealModal = ({ meals, setMeals, setUnusedMeals }) => {
                         setImgUrl={setImgUrl}/>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={addMealHandler}>Add meal</Button>
+                    <p>{addedMsg}</p>
+                    <Button variant="dark" onClick={addMealHandler}>Add meal</Button>
                 </Modal.Footer>
             </Modal>
         </div>

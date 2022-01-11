@@ -1,6 +1,6 @@
 import React from 'react';
 import DayOfWeek from './DayOfWeek';
-import styles from '../../styles/WeekCalendar.scss';
+import '../../styles/WeekCalendar.scss';
 import UnusedMeals from './UnusedMeals';
 
 
@@ -18,7 +18,7 @@ const WeekCalendar = ({ calendarMeals, unusedMeals, searchMeals }) => {
     })
 
     return (
-        <div className="week-calendar">
+        <div className="week-calendar inner-container">
             <h3>Calendar</h3>
             <div className="calendar-container">
                 {dayContainers}

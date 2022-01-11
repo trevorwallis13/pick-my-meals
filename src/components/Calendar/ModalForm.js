@@ -1,5 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form';
+import '../../styles/ModalForm.scss';
 
 const ModalForm = ({ mealName, setMealName, prepTime, setPrepTime, imgUrl, setImgUrl }) => {
     return (

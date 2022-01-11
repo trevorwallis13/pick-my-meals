@@ -1,9 +1,10 @@
 import React from 'react'
+import '../../styles/SearchMeal.scss';
 
 function SearchMeal({ searchMeals, setSearchMeals }) {
 
     return (
-        <form className="search-meal" onSubmit={(e) => e.preventDefault()}>
+        <form className="search-meal inner-container" onSubmit={(e) => e.preventDefault()}>
             <label htmlFor="filter-meals">Search</label>
             <input 
                 id="filter-meals" 

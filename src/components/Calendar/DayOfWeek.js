@@ -16,7 +16,7 @@ const DayOfWeek = ({ index, day, calendarMeals }) => {
     
     return (
         <div className="dayOfWeek">
-            <h3>{day}</h3>
+            <h4>{day}</h4>
             {dailyMeal}
         </div>
     )

@@ -1,0 +1,15 @@
+.pick-meals {
+    text-align: center;
+    padding: 20px 0;
+
+    h2 {
+        padding-bottom: 10px;
+        font-weight: 700;
+    }
+    .pick-meal-btns {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+}

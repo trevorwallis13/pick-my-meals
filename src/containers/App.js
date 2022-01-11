@@ -64,14 +64,10 @@ function App() {
           setMeals={setMeals}
           setUnusedMeals={setUnusedMeals}
       />
-      <SearchMeal 
-          searchMeals={searchMeals}
-          setSearchMeals={setSearchMeals}
-      />
-
       <UnusedMeals 
           unusedMeals={unusedMeals} 
           searchMeals={searchMeals}
+          setSearchMeals={setSearchMeals}
       />
 
       <WeekCalendar 

@@ -1,13 +1,13 @@
 import React from 'react';
-import MealSmall from './MealSmall';
 import Meal from './Meal';
 import '../../styles/UnusedMeals.scss';
+import SearchMeal from './SearchMeal';
 
-const UnusedMeals = ({ unusedMeals, searchMeals }) => {
+const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals }) => {
 
      if (!unusedMeals.length) {
         return (
-            <div className="unused-meals">
+            <div className="unused-meals inner-container">
                 <h3>Meals</h3>
                 <p>Add meals to get started!</p>
             </div>
@@ -35,8 +35,11 @@ const UnusedMeals = ({ unusedMeals, searchMeals }) => {
     });
    
     return (
-        <div className='unused-meals'>
+        <div className='unused-meals inner-container'>
             <h3>Meals</h3>
+            <SearchMeal 
+                searchMeals={searchMeals}
+                setSearchMeals={setSearchMeals}/>
             <div className="unused-meals-container">
                 {unusedMealComponents}
             </div>

@@ -61,7 +61,7 @@ export const mealOptions = [
     },
     {
         id: 11,
-        name: 'BBQ sandwhiches',
+        name: 'BBQ sandwiches',
         img: 'https://www.thespruceeats.com/thmb/SBCFcywcn8HQgtHzXLfngNKwqs0=/1800x1216/filters:fill(auto,1)/pulled-pork-and-slaw-on-plate-18-56a8b9625f9b58b7d0f49e73.jpg',
         time: '3 hr'
     }

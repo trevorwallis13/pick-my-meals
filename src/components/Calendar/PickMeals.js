@@ -1,16 +1,20 @@
 import React from 'react'
 import MealModal from './MealModal'
+import Button from 'react-bootstrap/Button';
+import '../../styles/PickMeals.scss'
 
 function PickMeals({ selectMeals, addNewMeal, meals, setMeals, setUnusedMeals }) {
     return (
-        <div>
+        <div className="pick-meals inner-container">
             <h2>What do you want for dinner this week?</h2>
-            <button onClick={selectMeals}>Pick my meals!</button>
-            <MealModal 
-                addNewMeal={addNewMeal}
-                meals={meals}
-                setMeals={setMeals}
-                setUnusedMeals={setUnusedMeals} />
+            <div className="pick-meal-btns">
+                <Button variant="dark" size="lg" onClick={selectMeals}>Pick my meals!</Button>
+                <MealModal
+                    addNewMeal={addNewMeal}
+                    meals={meals}
+                    setMeals={setMeals}
+                    setUnusedMeals={setUnusedMeals} />
+            </div>
         </div>
     )
 }

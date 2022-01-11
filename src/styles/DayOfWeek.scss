@@ -1,15 +1,17 @@
 .dayOfWeek{
     box-sizing: border-box;
     border-radius: 5px;
-    background-color: rgb(225, 225, 250);
+    background-color: #1f1f1f;
+    color: #fafafa;
     width: 150px;
     height: 250px;
     padding: .5em;
     position: relative;
 
-    h3 {
+    h4 {
         position: absolute;
         font-size: 1.5rem;
+        padding: 0;
         margin: 0;
         top: 5px;
         left: 5px;
