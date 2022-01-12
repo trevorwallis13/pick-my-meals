@@ -1,7 +1,6 @@
 import React from 'react';
 import DayOfWeek from './DayOfWeek';
 import '../../styles/WeekCalendar.scss';
-import UnusedMeals from './UnusedMeals';
 
 
 const WeekCalendar = ({ calendarMeals, unusedMeals, searchMeals }) => {
@@ -9,12 +8,15 @@ const WeekCalendar = ({ calendarMeals, unusedMeals, searchMeals }) => {
     const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
     const dayContainers = daysOfWeek.map((day, i) => {
-        return <DayOfWeek 
-                    key={i} 
-                    day={day} 
-                    calendarMeals={calendarMeals} 
-                    index={i}
+        return (
+            <div> 
+                <DayOfWeek
+                key={i}
+                day={day}
+                calendarMeals={calendarMeals}
                 />
+            </div>
+        )
     })
 
     return (
@@ -23,7 +25,6 @@ const WeekCalendar = ({ calendarMeals, unusedMeals, searchMeals }) => {
             <div className="calendar-container">
                 {dayContainers}
             </div>
-           
         </div>
     )
 }

@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 // Components
 import WeekCalendar from '../components/Calendar/WeekCalendar';
 import PickMeals from '../components/Calendar/PickMeals';
-import SearchMeal from '../components/Calendar/SearchMeal';
 import UnusedMeals from '../components/Calendar/UnusedMeals';
 
 //Data and functions
 import { randomMeals } from '../functions/randomMealIndices';
 import { mealOptions } from '../data/mealOptions';
+import { DragDropContext } from 'react-beautiful-dnd';
 
 //Styles
 import '../styles/App.scss';
@@ -39,6 +39,10 @@ function App() {
     setUnusedMeals(remainingMeals);
   }
 
+  const onDragEnd = result => {
+    console.log(result);
+  }
+
   // State management - useEffect on load
    
 
@@ -57,25 +61,27 @@ function App() {
   }, [meals]);
 
   return (
-    <main className='container'>
-      <PickMeals 
-          selectMeals={selectMeals}
-          meals={meals}
-          setMeals={setMeals}
-          setUnusedMeals={setUnusedMeals}
-      />
-      <UnusedMeals 
-          unusedMeals={unusedMeals} 
-          searchMeals={searchMeals}
-          setSearchMeals={setSearchMeals}
-      />
-
-      <WeekCalendar 
-        calendarMeals={calendarMeals}
-        unusedMeals={unusedMeals}
-        searchMeals={searchMeals}
-        />
-    </main>
+    
+      <main className='container'>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <PickMeals 
+              selectMeals={selectMeals}
+              meals={meals}
+              setMeals={setMeals}
+              setUnusedMeals={setUnusedMeals}
+          />
+            <UnusedMeals 
+                unusedMeals={unusedMeals} 
+                searchMeals={searchMeals}
+                setSearchMeals={setSearchMeals}
+            />
+            <WeekCalendar 
+              calendarMeals={calendarMeals}
+              unusedMeals={unusedMeals}
+              searchMeals={searchMeals}
+            />        
+        </DragDropContext>
+      </main>
   );
 }
 

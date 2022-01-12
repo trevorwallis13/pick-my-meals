@@ -2,6 +2,7 @@ import React from 'react';
 import Meal from './Meal';
 import '../../styles/UnusedMeals.scss';
 import SearchMeal from './SearchMeal';
+import { Droppable, Draggable } from 'react-beautiful-dnd';
 
 const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals }) => {
 
@@ -30,8 +31,8 @@ const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals }) => {
         return mealName.includes(searchVal);
     })
 
-    const unusedMealComponents = searchUnusedMeals.map(meal => {
-        return <Meal key={meal.id} img={meal.img} name={meal.name} time={meal.time} />
+    const unusedMealComponents = searchUnusedMeals.map((meal, i) => {
+        return <Meal key={meal.id} id={meal.id} img={meal.img} name={meal.name} time={meal.time} index={i} />
     });
    
     return (
@@ -40,9 +41,15 @@ const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals }) => {
             <SearchMeal 
                 searchMeals={searchMeals}
                 setSearchMeals={setSearchMeals}/>
-            <div className="unused-meals-container">
-                {unusedMealComponents}
-            </div>
+            <Droppable droppableId='unused-meals'>
+                {(provided) => {
+                    return (
+                    <div className="unused-meals-container" ref={provided.innerRef} {...provided.droppableProps}>
+                        {unusedMealComponents}
+                    </div>
+                    )}}
+            </Droppable>
+           
         </div>
     )
 }
