@@ -12,6 +12,7 @@ const WeekCalendar = ({ calendarMeals, unusedMeals, searchMeals }) => {
             <div> 
                 <DayOfWeek
                 key={i}
+                index={i}
                 day={day}
                 calendarMeals={calendarMeals}
                 />

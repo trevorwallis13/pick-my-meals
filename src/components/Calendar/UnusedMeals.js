@@ -15,16 +15,16 @@ const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals }) => {
         )
     }
     
-    const mealsAlphaSorted = unusedMeals.sort((a, b) => {
+    // const mealsAlphaSorted = unusedMeals.sort((a, b) => {
 
-        let nameA = a.name.toLowerCase();
-        let nameB = b.name.toLowerCase();
+    //     let nameA = a.name.toLowerCase();
+    //     let nameB = b.name.toLowerCase();
 
-        if (nameA === nameB) return 0;
-        return nameA < nameB ? -1 : 1;
-    });
+    //     if (nameA === nameB) return 0;
+    //     return nameA < nameB ? -1 : 1;
+    // });
 
-    const searchUnusedMeals = mealsAlphaSorted.filter(meal => {
+    const searchUnusedMeals = unusedMeals.filter(meal => {
         const mealName = meal.name.toLowerCase();
         const searchVal = searchMeals.toLowerCase();
 
@@ -41,11 +41,12 @@ const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals }) => {
             <SearchMeal 
                 searchMeals={searchMeals}
                 setSearchMeals={setSearchMeals}/>
-            <Droppable droppableId='unused-meals'>
+            <Droppable droppableId='unused-meals' direction="horizontal">
                 {(provided) => {
                     return (
                     <div className="unused-meals-container" ref={provided.innerRef} {...provided.droppableProps}>
                         {unusedMealComponents}
+                        {provided.placeholder}
                     </div>
                     )}}
             </Droppable>

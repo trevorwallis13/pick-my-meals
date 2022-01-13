@@ -13,6 +13,10 @@ import { DragDropContext } from 'react-beautiful-dnd';
 //Styles
 import '../styles/App.scss';
 
+//Misc
+
+const weekdays = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
+
 
 function App() {
   
@@ -23,8 +27,7 @@ function App() {
   );
   
   const [calendarMeals, setCalendarMeals] = useState(
-    JSON.parse(localStorage.getItem("calendarMeals")) || []
-  );
+    JSON.parse(localStorage.getItem("calendarMeals")) || ['','','','','','','']);
 
   const [unusedMeals, setUnusedMeals] = useState(
     JSON.parse(localStorage.getItem("unusedMeals")) || meals);
@@ -39,8 +42,50 @@ function App() {
     setUnusedMeals(remainingMeals);
   }
 
+  const setCalAndUnused = (calList, unusedList) => {
+    setCalendarMeals(calList);
+    setUnusedMeals(unusedList);
+  }
+
+ 
+
+
+
   const onDragEnd = result => {
     console.log(result);
+    const { destination, source, draggableId } = result;
+    const movedItemUnused = () => unusedList.splice(source.index, 1);
+    let unusedList = Array.from(unusedMeals);
+    let calList = Array.from(calendarMeals);
+    let destIdx = weekdays.indexOf(destination.droppableId);
+    let sourceIdx = weekdays.indexOf(source.droppableId);
+    
+    if(!destination) return;
+
+    if(destination.droppableId === source.droppableId && destination.index === source.index) return;
+
+    if (destination.droppableId === "unused-meals" && source.droppableId === "unused-meals") {
+      calList.splice(destination.index, 0, ...movedItemUnused());
+      return setUnusedMeals(calList);
+    }
+
+    if (source.droppableId === "unused-meals") {
+      let removedCalItem = calList.splice(destIdx, 1, ...movedItemUnused());
+      if(Object.keys(...removedCalItem).length) {unusedList.splice(0, 0, ...removedCalItem)}
+      return setCalAndUnused(calList, unusedList);
+    }
+
+    if(source.droppableId !== 'unused-meals' && destination.droppableId !== 'unused-meals') {
+      let movedItem = calList.splice(sourceIdx, 1);
+      calList.splice(destIdx, 0, ...movedItem);
+      return setCalendarMeals(calList);
+    }
+
+    if(source.droppableId !== 'unused-meals') {
+      let movedItem = calList.splice(sourceIdx, 1, "");
+      unusedList.splice(destination.index, 0, ...movedItem);
+      return setCalAndUnused(calList, unusedList);
+    }
   }
 
   // State management - useEffect on load

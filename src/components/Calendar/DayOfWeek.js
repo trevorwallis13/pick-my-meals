@@ -1,6 +1,7 @@
 import React from 'react';
 import Meal from './Meal';
 import '../../styles/DayOfWeek.scss';
+import { Droppable } from 'react-beautiful-dnd';
 
 const DayOfWeek = ({ index, day, calendarMeals }) => {
     
@@ -9,15 +10,24 @@ const DayOfWeek = ({ index, day, calendarMeals }) => {
     // });
     let dailyMeal = '';
 
-    if(calendarMeals.length) {
-        const { img, name, time } = calendarMeals[index];
-        dailyMeal = <Meal img={img} name={name} time={time} />
+    if(Object.keys(calendarMeals.length && calendarMeals[index]).length) {
+        const { id, img, name, time } = calendarMeals[index];
+        dailyMeal = <Meal key={id} img={img} name={name} time={time} index={index} />
     }
     
     return (
         <div className="dayOfWeek">
             <h4>{day}</h4>
-            {dailyMeal}
+            <Droppable droppableId={day}>
+                {(provided) => {
+                    return (
+                        <div ref={provided.innerRef} {...provided.droppableProps}>
+                            {dailyMeal}
+                            {provided.placeholder}
+                        </div>   
+                    )
+                }}
+            </Droppable>
         </div>
     )
 };
