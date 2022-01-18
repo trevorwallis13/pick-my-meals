@@ -3,7 +3,7 @@ import DayOfWeek from './DayOfWeek';
 import '../../styles/WeekCalendar.scss';
 
 
-const WeekCalendar = ({ calendarMeals, unusedMeals, searchMeals }) => {
+const WeekCalendar = ({ calendarMeals, setCalendarMeals, unusedMeals, setUnusedMeals }) => {
 
     const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
@@ -15,6 +15,9 @@ const WeekCalendar = ({ calendarMeals, unusedMeals, searchMeals }) => {
                 index={i}
                 day={day}
                 calendarMeals={calendarMeals}
+                setCalendarMeals={setCalendarMeals}
+                setUnusedMeals={setUnusedMeals}
+                unusedMeals={unusedMeals}
                 />
             </div>
         )

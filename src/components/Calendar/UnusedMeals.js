@@ -2,9 +2,9 @@ import React from 'react';
 import Meal from './Meal';
 import '../../styles/UnusedMeals.scss';
 import SearchMeal from './SearchMeal';
-import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Droppable } from 'react-beautiful-dnd';
 
-const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals }) => {
+const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals, removeCalItem }) => {
 
      if (!unusedMeals.length) {
         return (
@@ -32,7 +32,7 @@ const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals }) => {
     })
 
     const unusedMealComponents = searchUnusedMeals.map((meal, i) => {
-        return <Meal key={meal.id} id={meal.id} img={meal.img} name={meal.name} time={meal.time} index={i} />
+        return <Meal key={meal.id} id={meal.id} img={meal.img} name={meal.name} time={meal.time} index={i}/>
     });
    
     return (

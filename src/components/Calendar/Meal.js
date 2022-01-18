@@ -1,8 +1,13 @@
 import React from 'react';
 import '../../styles/meal.scss';
 import { Draggable } from 'react-beautiful-dnd';
+import {FaTrashAlt } from 'react-icons/fa';
 
-const Meal = ({ id, name, img, time, index }) => {
+const Meal = ({ id, name, img, time, index, removeCalItem }) => {
+
+    // const removeCalItem = (e) => {
+    //     console.log(name, index);
+    // }
     return (
          <Draggable draggableId={name} index={index}>
             {(provided) => {
@@ -24,6 +29,10 @@ const Meal = ({ id, name, img, time, index }) => {
                                 <p>{time}</p>
                             </div>
                         </div>
+                        <FaTrashAlt 
+                            role="button" 
+                            className='delete-button'
+                            onClick={removeCalItem} />
                     </div>
             )}}
          </Draggable> 
