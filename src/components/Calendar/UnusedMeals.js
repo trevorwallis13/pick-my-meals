@@ -3,8 +3,9 @@ import Meal from './Meal';
 import '../../styles/UnusedMeals.scss';
 import SearchMeal from './SearchMeal';
 import { Droppable } from 'react-beautiful-dnd';
+import Button from 'react-bootstrap/Button';
 
-const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals, removeCalItem }) => {
+const UnusedMeals = ({ unusedMeals, sortAscending, searchMeals, setSearchMeals }) => {
 
      if (!unusedMeals.length) {
         return (
@@ -15,15 +16,6 @@ const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals, removeCalItem }
         )
     }
     
-    // const mealsAlphaSorted = unusedMeals.sort((a, b) => {
-
-    //     let nameA = a.name.toLowerCase();
-    //     let nameB = b.name.toLowerCase();
-
-    //     if (nameA === nameB) return 0;
-    //     return nameA < nameB ? -1 : 1;
-    // });
-
     const searchUnusedMeals = unusedMeals.filter(meal => {
         const mealName = meal.name.toLowerCase();
         const searchVal = searchMeals.toLowerCase();
@@ -34,10 +26,13 @@ const UnusedMeals = ({ unusedMeals, searchMeals, setSearchMeals, removeCalItem }
     const unusedMealComponents = searchUnusedMeals.map((meal, i) => {
         return <Meal key={meal.id} id={meal.id} img={meal.img} name={meal.name} time={meal.time} index={i}/>
     });
-   
+
     return (
         <div className='unused-meals inner-container'>
-            <h3>Meals</h3>
+            <div className="unused-header-section">
+                <h3>Meals</h3>
+                <Button variant="outline-dark" onClick={sortAscending}>Sort A-Z</Button>
+            </div>
             <SearchMeal 
                 searchMeals={searchMeals}
                 setSearchMeals={setSearchMeals}/>

@@ -1,9 +1,10 @@
 import React from 'react';
 import DayOfWeek from './DayOfWeek';
 import '../../styles/WeekCalendar.scss';
+import Button from 'react-bootstrap/Button';
 
 
-const WeekCalendar = ({ calendarMeals, setCalendarMeals, unusedMeals, setUnusedMeals }) => {
+const WeekCalendar = ({ calendarMeals, setCalendarMeals, unusedMeals, setUnusedMeals, clearCalendar }) => {
 
     const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
@@ -21,11 +22,14 @@ const WeekCalendar = ({ calendarMeals, setCalendarMeals, unusedMeals, setUnusedM
                 />
             </div>
         )
-    })
+    });
 
     return (
         <div className="week-calendar inner-container">
-            <h3>Calendar</h3>
+            <div className="cal-header-section">
+                <h3>Calendar</h3>
+                <Button variant="outline-dark" className="clear-btn" onClick={clearCalendar}>Clear calendar</Button>
+            </div>
             <div className="calendar-container">
                 {dayContainers}
             </div>

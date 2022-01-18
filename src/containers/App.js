@@ -45,6 +45,24 @@ function App() {
     setCalAndUnused(...fillMealList(unusedMeals, calendarMeals));
   }
 
+  const clearCalendar = () => {
+    setCalendarMeals(['','','','','','','']);
+    setUnusedMeals(meals);
+  }
+
+  const sortAscending = () => {
+    let newUnusedMealsList = Array.from(unusedMeals);
+    newUnusedMealsList.sort((a, b) => {
+        let nameA = a.name.toLowerCase();
+        let nameB = b.name.toLowerCase();
+
+        if (nameA === nameB) return 0;
+        return nameA < nameB ? -1 : 1;
+    });
+
+    setUnusedMeals(newUnusedMealsList);
+}
+
   const onDragEnd = result => {
 
     const { destination, source } = result;
@@ -80,18 +98,13 @@ function App() {
 
     if(fromCalToCal) {
       if(calList[destIdx]) {
-
         let movedItem = calList.splice(sourceIdx, 1);
         calList.splice(destIdx, 0, ...movedItem);
-
       } else {
-
         let movedItem = calList.splice(sourceIdx, 1, "");
         calList.splice(destIdx, 1, ...movedItem);
       }
-      
       return setCalendarMeals(calList);
-
     }
 
     if(fromCalToUnused) {
@@ -132,6 +145,7 @@ function App() {
                 unusedMeals={unusedMeals} 
                 searchMeals={searchMeals}
                 setSearchMeals={setSearchMeals}
+                sortAscending={sortAscending}
             />
             <WeekCalendar 
               calendarMeals={calendarMeals}
@@ -139,6 +153,7 @@ function App() {
               setUnusedMeals={setUnusedMeals}
               unusedMeals={unusedMeals}
               searchMeals={searchMeals}
+              clearCalendar={clearCalendar}
             />        
         </DragDropContext>
       </main>
