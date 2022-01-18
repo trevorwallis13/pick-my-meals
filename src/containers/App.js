@@ -6,12 +6,13 @@ import PickMeals from '../components/Calendar/PickMeals';
 import UnusedMeals from '../components/Calendar/UnusedMeals';
 
 //Data and functions
-import { randomMeals } from '../functions/randomMealIndices';
 import { mealOptions } from '../data/mealOptions';
 import { DragDropContext } from 'react-beautiful-dnd';
+import { fillMealList } from '../functions/selectMealsForCal';
 
 //Styles
 import '../styles/App.scss';
+import { ListGroup } from 'react-bootstrap';
 
 //Misc
 
@@ -35,57 +36,13 @@ function App() {
 
   // State management - Update state functions
 
-  // const selectMeals = () => {
-  //   const [ mealsForWeek, remainingMeals ] = randomMeals(meals);
-  //   setCalendarMeals(mealsForWeek);
-  //   setUnusedMeals(remainingMeals);
-  // }
-
-  const selectMeals = () => {
-    const emptyDays = getEmptyDays();
-    let newUnusedMealsList = Array.from(unusedMeals);
-    let newCalMealsList = Array.from(calendarMeals);
-
-    console.log(emptyDays);
-
-    for(let i = 0; i<emptyDays.length; i++) {
-      const randIdx = Math.floor(Math.random() * newUnusedMealsList.length);
-      const newMeal = newUnusedMealsList.splice(randIdx, 1);
-
-
-      newCalMealsList.splice(emptyDays[i], 1, ...newMeal);
-    }
-
-    setCalAndUnused(newCalMealsList, newUnusedMealsList);
-
-  }
-
   const setCalAndUnused = (calList, unusedList) => {
     setCalendarMeals(calList);
     setUnusedMeals(unusedList);
   }
 
-  const isCalListFull = () => {
-
-    let isFull = true;
-  
-    for(let i = 0; i<calendarMeals.length; i++) {
-      if(!calendarMeals[i].length) {
-        return isFull = false;
-      }
-    }
-    return isFull
-  }
-
-  const getEmptyDays = () => {
-    let emptyIndices = [];
-
-    for(let i = 0; i<7; i++) {
-      if(!Object.keys(calendarMeals[i]).length) {
-        emptyIndices.push(i);
-      }
-    }
-    return emptyIndices
+  const selectMeals = () => {
+    setCalAndUnused(...fillMealList(unusedMeals, calendarMeals));
   }
 
   const onDragEnd = result => {
@@ -99,23 +56,29 @@ function App() {
 
     let destIdx = weekdays.indexOf(destination.droppableId);
     let sourceIdx = weekdays.indexOf(source.droppableId);
-    
+
+    //location checks
+    const isSameLocation = destination.droppableId === source.droppableId && destination.index === source.index;
+    const fromUnusedToUnused = destination.droppableId === "unused-meals" && source.droppableId === "unused-meals";
+    const fromUnusedToCal = source.droppableId === "unused-meals";
+    const fromCalToCal = source.droppableId !== 'unused-meals' && destination.droppableId !== 'unused-meals';
+    const fromCalToUnused = source.droppableId !== 'unused-meals';
+
     if(!destination) return;
+    if(isSameLocation) return;
 
-    if(destination.droppableId === source.droppableId && destination.index === source.index) return;
-
-    if (destination.droppableId === "unused-meals" && source.droppableId === "unused-meals") {
+    if(fromUnusedToUnused) {
       unusedList.splice(destination.index, 0, ...movedItemUnused());
       return setUnusedMeals(unusedList);
     }
 
-    if (source.droppableId === "unused-meals") {
+    if (fromUnusedToCal) {
       let removedCalItem = calList.splice(destIdx, 1, ...movedItemUnused());
       if(Object.keys(...removedCalItem).length) {unusedList.splice(0, 0, ...removedCalItem)}
       return setCalAndUnused(calList, unusedList);
     }
 
-    if(source.droppableId !== 'unused-meals' && destination.droppableId !== 'unused-meals') {
+    if(fromCalToCal) {
       if(calList[destIdx]) {
 
         let movedItem = calList.splice(sourceIdx, 1);
@@ -131,7 +94,7 @@ function App() {
 
     }
 
-    if(source.droppableId !== 'unused-meals') {
+    if(fromCalToUnused) {
       let movedItem = calList.splice(sourceIdx, 1, "");
       unusedList.splice(destination.index, 0, ...movedItem);
       return setCalAndUnused(calList, unusedList);

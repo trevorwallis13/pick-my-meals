@@ -16,7 +16,6 @@ const DayOfWeek = ({ index, day, calendarMeals, setCalendarMeals, setUnusedMeals
         let newUnusedMeals = Array.from(unusedMeals);
         let movedMeal = newCalMeals.splice(index, 1, '');
         newUnusedMeals.splice(0, 0, ...movedMeal);
-        console.log(...movedMeal);
         setCalendarMeals(newCalMeals);
         setUnusedMeals(newUnusedMeals);
     }
