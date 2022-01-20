@@ -5,9 +5,6 @@ import {FaTrashAlt } from 'react-icons/fa';
 
 const Meal = ({ id, name, img, time, index, removeCalItem }) => {
 
-    // const removeCalItem = (e) => {
-    //     console.log(name, index);
-    // }
     return (
          <Draggable draggableId={name} index={index}>
             {(provided) => {

@@ -2,10 +2,50 @@
     box-sizing: border-box;
     color: #fafafa;
     background-color: #1f1f1f;
-    text-align: center;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
 
-    h1 {
-        margin: 0;
-        padding: 10px 20px
+    .header-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 95%;
+        max-width: 1500px;
+
+        h1 {
+            margin: 0;
+            padding: 10px 0;
+        }
+    
+        .main-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            margin: none;
+    
+            ul {
+                margin: 0;
+            }
+    
+            li {
+                list-style-type: none;
+            }
+    
+            .sign-out-button {
+                border: 2px solid #fafafa;
+                color: #fafafa;
+            }
+    
+            .sign-out-button:hover,
+            .sign-out-button:focus {
+                background-color: #fafafa;
+                color: #1f1f1f;
+            }
+            
+        }
     }
-}
+    }
+
+   

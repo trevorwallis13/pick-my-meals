@@ -10,7 +10,7 @@ const WeekCalendar = ({ calendarMeals, setCalendarMeals, unusedMeals, setUnusedM
 
     const dayContainers = daysOfWeek.map((day, i) => {
         return (
-            <div> 
+
                 <DayOfWeek
                 key={i}
                 index={i}
@@ -20,7 +20,7 @@ const WeekCalendar = ({ calendarMeals, setCalendarMeals, unusedMeals, setUnusedM
                 setUnusedMeals={setUnusedMeals}
                 unusedMeals={unusedMeals}
                 />
-            </div>
+ 
         )
     });
 
