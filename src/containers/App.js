@@ -36,6 +36,14 @@ const App = () => {
         setSignInStatus(false);
         setRoute('signin');
     }
+
+    const routeToRegister = () => {
+        setRoute('register');
+    }
+
+    const routeToSignIn = () => {
+        setRoute('signin');
+    }
     
     if(route === 'home') {
         return (

@@ -7,7 +7,7 @@ import '../../styles/SignIn.scss';
 const Register = ({register, setRoute}) => {
     return (
         <main className="sign-in">
-            <Header />
+            <Header setRoute={setRoute}/>
             <section className='sign-in-container'>
                 <div className='sign-in-form-container'>
                     <RegisterForm register={register} setRoute={setRoute}/>

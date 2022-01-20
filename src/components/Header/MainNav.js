@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import '../../styles/MainNav.scss';
 
 
-function MainNav({ signOut, signInStatus, setRoute }) {
+function MainNav({ signOut, signInStatus, setRoute}) {
 
     let navList;
 

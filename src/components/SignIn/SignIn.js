@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 const SignIn = ({signIn, error, setRoute}) => {
     return (
         <main className="sign-in">
-            <Header />
+            <Header setRoute={setRoute}/>
             <section className='sign-in-container'>
                 <div className='sign-in-form-container'>
                     <SignInForm signIn={signIn} error={error} setRoute={setRoute}/>
