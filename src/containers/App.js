@@ -1,39 +1,60 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import MealPicker from './MealPicker';
 import Footer from '../components/Footer/Footer';
 import Header from '../components/Header/Header';
 import SignIn from '../components/SignIn/SignIn';
 import Register from '../components/SignIn/Register';
-import { userList } from '../data/userList';
 
 const App = () => {
     const [signInStatus, setSignInStatus] = useState(false);
     const [route, setRoute] = useState('signin');
     const [error, setError] = useState('');
-    const [users, setUsers] = useState(userList);
- 
+    const [currentUser, setCurrentUser] = useState('');
+    
     const signIn = (userDetails) => {
-        console.log(userDetails);
-        if(userDetails.email === users[0].email && userDetails.password === users[0].password) {
-            setSignInStatus(true);
-            setRoute("home");
-        } else {
-            setError("Invalid username or password!");
-        }
+
+        fetch('http://localhost:3001/signin', {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: userDetails.email,
+                password: userDetails.password
+            })
+        })
+            .then(response => response.json())
+            .then(user => {
+                if (user) {
+                    setSignInStatus(true);
+                    setCurrentUser(user);
+                    setError('');
+                    setRoute("home");
+                } else {
+                    setError("Invalid email or password!");
+                }
+            });
     }
 
     const register = (userDetails) => {
-        setUsers(users => {
-            users.push(userDetails);
-            return users
+
+        fetch('http://localhost:3001/register', {
+            method: 'post',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(userDetails)
         })
-        console.log(users);
-        setSignInStatus(true);
-        setRoute("home");
+            .then(response => response.json())
+            .then(user => {
+                if(user) {
+                    setSignInStatus(true);
+                    setCurrentUser(user);
+                    setRoute("home");
+                }   
+            });
     }
 
     const signOut = () => {
         setSignInStatus(false);
+        setError('');
+        setCurrentUser('');
         setRoute('signin');
     }
 
@@ -48,8 +69,14 @@ const App = () => {
     if(route === 'home') {
         return (
             <main>
-                <Header signOut={signOut} signInStatus={signInStatus} setRoute={setRoute}/>
-                <MealPicker />
+                <Header 
+                    setRoute={setRoute} 
+                    signOut={signOut} 
+                    signInStatus={signInStatus} 
+                    routeToRegister={routeToRegister} 
+                    routeToSignIn={routeToSignIn}/>
+                <MealPicker 
+                    currentUser={currentUser}/>
                 <Footer />
              </main>
         )

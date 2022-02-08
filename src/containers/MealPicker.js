@@ -4,69 +4,68 @@ import React, { useState, useEffect } from 'react';
 import WeekCalendar from '../components/Calendar/WeekCalendar';
 import PickMeals from '../components/Calendar/PickMeals';
 import UnusedMeals from '../components/Calendar/UnusedMeals';
-import Header from '../components/Header/Header';
 
 //Data and functions
-import { mealOptions } from '../data/mealOptions';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { fillMealList } from '../functions/selectMealsForCal';
 
 //Styles
 import '../styles/App.scss';
-import { ListGroup } from 'react-bootstrap';
 
 //Misc
 
 const weekdays = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
-function MealPicker() {
-  
+const MealPicker = ({ currentUser}) => {
+
   //State management - useState hooks
 
-  const [meals, setMeals] = useState(
-    JSON.parse(localStorage.getItem("meals")) || mealOptions
-  );
-  
-  const [calendarMeals, setCalendarMeals] = useState(
-    JSON.parse(localStorage.getItem("calendarMeals")) || ['','','','','','','']);
-
-  const [unusedMeals, setUnusedMeals] = useState(
-    JSON.parse(localStorage.getItem("unusedMeals")) || meals);
-
+  const [meals, setMeals] = useState('');
+  const [calendarMeals, setCalendarMeals] = useState(['','','','','','','']);
+  const [unusedMeals, setUnusedMeals] = useState('');
   const [searchMeals, setSearchMeals] = useState('');
 
   // State management - Update state functions
 
-  const setCalAndUnused = (calList, unusedList) => {
-    setCalendarMeals(calList);
-    setUnusedMeals(unusedList);
+  const getUnusedMealList = () => {
+    
+    if(meals.length) {
+      const calMealsIds = calendarMeals.map(meal => meal.id)
+      const unusedMealList = meals.filter(meal => calMealsIds.indexOf(meal.id) === -1);
+      
+      const filteredUnusedMeals = unusedMealList.filter(meal => {
+        const mealName = meal.meal_name.toLowerCase();
+        const searchVal = searchMeals.toLowerCase();
+        return mealName.includes(searchVal);
+    })
+      setUnusedMeals(filteredUnusedMeals);
+    }
   }
 
   const selectMeals = () => {
-    setCalAndUnused(...fillMealList(unusedMeals, calendarMeals));
+    setCalendarMeals(fillMealList(unusedMeals, calendarMeals));
   }
 
   const clearCalendar = () => {
     setCalendarMeals(['','','','','','','']);
-    setUnusedMeals(meals);
   }
 
   const sortAscending = () => {
-    let newUnusedMealsList = Array.from(unusedMeals);
+    let mealsSorted = Array.from(meals);
     
-    newUnusedMealsList.sort((a, b) => {
-        let nameA = a.name.toLowerCase();
-        let nameB = b.name.toLowerCase();
+    mealsSorted.sort((a, b) => {
+        let nameA = a.meal_name.toLowerCase();
+        let nameB = b.meal_name.toLowerCase();
 
         if (nameA === nameB) return 0;
         return nameA < nameB ? -1 : 1;
     });
 
-    setUnusedMeals(newUnusedMealsList);
+    setMeals(mealsSorted);
 }
 
   const onDragEnd = result => {
-    console.log(result);
+
     const { destination, source } = result;
     
     let unusedList = Array.from(unusedMeals);
@@ -93,9 +92,8 @@ function MealPicker() {
     }
 
     if (fromUnusedToCal) {
-      let removedCalItem = calList.splice(destIdx, 1, ...movedItemUnused());
-      if(Object.keys(...removedCalItem).length) {unusedList.splice(0, 0, ...removedCalItem)}
-      return setCalAndUnused(calList, unusedList);
+      calList.splice(destIdx, 1, ...movedItemUnused());
+      return setCalendarMeals(calList);
     }
 
     if(fromCalToCal) {
@@ -111,37 +109,39 @@ function MealPicker() {
 
     if(fromCalToUnused) {
       let movedItem = calList.splice(sourceIdx, 1, "");
-      unusedList.splice(destination.index, 0, ...movedItem);
-      return setCalAndUnused(calList, unusedList);
+      return setCalendarMeals(calList);
     }
   }
 
   // State management - useEffect on load
-   
+  
+  useEffect(() => {
+    fetch('http://localhost:3001/meals', {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({id: currentUser.id})
+    })
+      .then(res => res.json())
+      .then(meals => {
+        setMeals(meals);
+      });
+  }, []);
 
   // State management - useEffect on change
 
   useEffect(() => {
-    localStorage.setItem("calendarMeals", JSON.stringify(calendarMeals));
-  }, [calendarMeals]);
-
-  useEffect(() =>{
-    localStorage.setItem("unusedMeals", JSON.stringify(unusedMeals));
-  }, [unusedMeals]);
-
-  useEffect(() => {
-    localStorage.setItem("meals", JSON.stringify(meals));
-  }, [meals]);
+    getUnusedMealList();
+  }, [meals, calendarMeals, searchMeals]);
 
   return (
     
-      <main className='container'>
+      <section className='container'>
         <DragDropContext onDragEnd={onDragEnd}>
           <PickMeals 
               selectMeals={selectMeals}
               meals={meals}
               setMeals={setMeals}
-              setUnusedMeals={setUnusedMeals}
+              currentUser={currentUser}
           />
             <UnusedMeals 
                 unusedMeals={unusedMeals} 
@@ -152,13 +152,11 @@ function MealPicker() {
             <WeekCalendar 
               calendarMeals={calendarMeals}
               setCalendarMeals={setCalendarMeals}
-              setUnusedMeals={setUnusedMeals}
-              unusedMeals={unusedMeals}
               searchMeals={searchMeals}
               clearCalendar={clearCalendar}
             />        
         </DragDropContext>
-      </main>
+      </section>
   );
 }
 

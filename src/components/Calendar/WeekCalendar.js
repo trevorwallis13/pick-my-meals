@@ -4,7 +4,7 @@ import '../../styles/WeekCalendar.scss';
 import Button from 'react-bootstrap/Button';
 
 
-const WeekCalendar = ({ calendarMeals, setCalendarMeals, unusedMeals, setUnusedMeals, clearCalendar }) => {
+const WeekCalendar = ({ calendarMeals, setCalendarMeals, clearCalendar }) => {
 
     const daysOfWeek = ['Mon', 'Tue', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'];
 
@@ -16,8 +16,6 @@ const WeekCalendar = ({ calendarMeals, setCalendarMeals, unusedMeals, setUnusedM
                     day={day}
                     calendarMeals={calendarMeals}
                     setCalendarMeals={setCalendarMeals}
-                    setUnusedMeals={setUnusedMeals}
-                    unusedMeals={unusedMeals}
                 />
         )
     });

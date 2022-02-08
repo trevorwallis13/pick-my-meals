@@ -7,25 +7,29 @@ import Button from 'react-bootstrap/Button';
 
 const UnusedMeals = ({ unusedMeals, sortAscending, searchMeals, setSearchMeals }) => {
 
-     if (!unusedMeals.length) {
-        return (
-            <div className="unused-meals inner-container">
-                <h3>Meals</h3>
-                <p>Add meals to get started!</p>
-            </div>
-        )
+    let mealVals
+
+    if (!unusedMeals.length) {
+        mealVals = <h4>Add meals to get started!</h4>
+    } else {
+        mealVals = unusedMeals.map((meal, i) => <Meal key={meal.id} id={meal.id} img={meal.img} meal_name={meal.meal_name} prep_time={meal.prep_time} index={i}/>); 
     }
-    
-    const searchUnusedMeals = unusedMeals.filter(meal => {
-        const mealName = meal.name.toLowerCase();
-        const searchVal = searchMeals.toLowerCase();
 
-        return mealName.includes(searchVal);
-    })
+    //  if (!unusedMeals.length) {
+    //     return (
+    //         <div className="unused-meals inner-container">
+    //             <div className="unused-header-section">
+    //                 <h3>Meals</h3>
+    //                 <Button variant="outline-dark" onClick={sortAscending}>Sort A-Z</Button>
+    //             </div>
+    //             <SearchMeal searchMeals={searchMeals} setSearchMeals={setSearchMeals}/>
+    //             <div className="unused-meals-container">
+    //                 <p>Add meals to get started!</p>
+    //             </div>  
+    //         </div>
+    //     )
+    // }
 
-    const unusedMealComponents = searchUnusedMeals.map((meal, i) => {
-        return <Meal key={meal.id} id={meal.id} img={meal.img} name={meal.name} time={meal.time} index={i}/>
-    });
 
     return (
         <div className='unused-meals inner-container'>
@@ -33,19 +37,16 @@ const UnusedMeals = ({ unusedMeals, sortAscending, searchMeals, setSearchMeals }
                 <h3>Meals</h3>
                 <Button variant="outline-dark" onClick={sortAscending}>Sort A-Z</Button>
             </div>
-            <SearchMeal 
-                searchMeals={searchMeals}
-                setSearchMeals={setSearchMeals}/>
+            <SearchMeal searchMeals={searchMeals} setSearchMeals={setSearchMeals}/>
             <Droppable droppableId='unused-meals' direction="horizontal">
-                {(provided) => {
-                    return (
-                    <div className="unused-meals-container" ref={provided.innerRef} {...provided.droppableProps}>
-                        {unusedMealComponents}
-                        {provided.placeholder}
-                    </div>
+                    {(provided) => {
+                        return (
+                            <div className="unused-meals-container" ref={provided.innerRef} {...provided.droppableProps}>
+                                {mealVals}
+                                {provided.placeholder}
+                            </div>
                     )}}
-            </Droppable>
-           
+                </Droppable>
         </div>
     )
 }

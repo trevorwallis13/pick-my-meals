@@ -3,10 +3,10 @@ import '../../styles/meal.scss';
 import { Draggable } from 'react-beautiful-dnd';
 import {FaTrashAlt } from 'react-icons/fa';
 
-const Meal = ({ id, name, img, time, index, removeCalItem }) => {
+const Meal = ({ id, meal_name, img, prep_time, index, removeCalItem }) => {
 
     return (
-         <Draggable draggableId={name} index={index}>
+         <Draggable draggableId={meal_name} index={index}>
             {(provided) => {
                 return (
                     <div className='meal' ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
@@ -20,10 +20,10 @@ const Meal = ({ id, name, img, time, index, removeCalItem }) => {
                             }}>
                         </div>
                         <div className='info'>
-                            <h5>{name}</h5>
+                            <h5>{meal_name}</h5>
                             <div className='prep-time'>
                                 <h6>Prep time</h6>
-                                <p>{time}</p>
+                                <p>{prep_time}</p>
                             </div>
                         </div>
                         <FaTrashAlt 

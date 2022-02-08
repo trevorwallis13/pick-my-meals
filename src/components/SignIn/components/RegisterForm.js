@@ -10,8 +10,8 @@ const RegisterForm = ({ register, setRoute }) => {
         e.preventDefault();
         register(newUserDetails);
         setNewUserDetails({email: '', password: ''});
-        setRoute("home");
     }
+    
   return(
     <Form onSubmit={handleRegister}>
         <h2>Register</h2>
@@ -38,7 +38,7 @@ const RegisterForm = ({ register, setRoute }) => {
         <Form.Group>
             <Form.Label>Password</Form.Label>
             <Form.Control
-                type="text"
+                type="password"
                 placeholder="Password"
                 onChange={e => setNewUserDetails({...newUserDetails, password: e.target.value})}
                 value={newUserDetails.password}

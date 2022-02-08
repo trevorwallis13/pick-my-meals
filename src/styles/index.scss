@@ -1,3 +1,5 @@
+
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -6,10 +8,19 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  
+  #root {
+    min-height: 10vh;
 
-    #root {
-      margin-bottom: 50px;
+    main {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
+  }
+
+    
 }
 
 code {

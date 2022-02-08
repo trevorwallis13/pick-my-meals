@@ -9,8 +9,12 @@ export const fillMealList = (unusedMeals, calendarMeals) => {
 
       newCalMealsList.splice(emptyDays[i], 1, ...newMeal);
     }
-
-    return [newCalMealsList, newUnusedMealsList]
+    if(newCalMealsList.length < 7) {
+      for (let i = newCalMealsList.length; i<7; i++) {
+        newCalMealsList.push("");
+      }
+    }
+    return newCalMealsList
 
   }
 

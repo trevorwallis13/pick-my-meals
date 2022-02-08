@@ -3,7 +3,7 @@ import MealModal from './MealModal'
 import Button from 'react-bootstrap/Button';
 import '../../styles/PickMeals.scss'
 
-function PickMeals({ selectMeals, addNewMeal, meals, setMeals, setUnusedMeals }) {
+function PickMeals({ selectMeals, addNewMeal, meals, setMeals, currentUser }) {
     return (
         <div className="pick-meals inner-container">
             <h2>What do you want for dinner this week?</h2>
@@ -13,7 +13,7 @@ function PickMeals({ selectMeals, addNewMeal, meals, setMeals, setUnusedMeals })
                     addNewMeal={addNewMeal}
                     meals={meals}
                     setMeals={setMeals}
-                    setUnusedMeals={setUnusedMeals} />
+                    currentUser={currentUser} />
             </div>
         </div>
     )

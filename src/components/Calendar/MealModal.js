@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import ModalForm from './ModalForm';
 
-const MealModal = ({ meals, setMeals, setUnusedMeals }) => {
+const MealModal = ({ meals, setMeals, currentUser }) => {
     const [show, setShow] = useState(false);
     const [mealName, setMealName] = useState('');
     const [prepTime, setPrepTime] = useState('');
@@ -17,21 +17,34 @@ const MealModal = ({ meals, setMeals, setUnusedMeals }) => {
     };
 
     const addMealHandler = () => {
-        const mealIds = meals.map(meal => meal.id);
-        const newMealId = Math.max(...mealIds) + 1
-        const newMeal = {
-            id: newMealId,
+        const mealData = {
+            user_id: currentUser.id,
             img: imgUrl,
-            name: mealName,
-            time: prepTime
+            meal_name: mealName,
+            prep_time: prepTime
         }
 
-        if (newMeal.name.length) {setMeals((meals) => [...meals, newMeal]);
-        setUnusedMeals((unusedMeals) => [...unusedMeals, newMeal]);
-        setMealName('');
-        setPrepTime('');
-        setImgUrl('');}
-        setAddedMsg(`Success! ${newMeal.name} added to list.`);
+        if (mealData.meal_name.length) {
+
+            fetch('http://localhost:3001/meals/new', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(mealData)
+            })
+                .then(res => res.json())
+                .then(newMeal => {
+                    setMeals((meals) => [...meals, newMeal]);
+                    setAddedMsg(`Success! ${newMeal.meal_name} added to list.`);
+            })
+                .catch(err => {
+                    setAddedMsg("Uh oh! Something went wrong. Please try again");
+                    console.log(err);
+                })
+
+            setMealName('');
+            setPrepTime('');
+            setImgUrl('');}
+            
     };
 
     return (

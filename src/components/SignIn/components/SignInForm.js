@@ -28,7 +28,7 @@ const SignInForm = ({ signIn, error, setRoute }) => {
         <Form.Group>
             <Form.Label>Password</Form.Label>
             <Form.Control
-                type="text"
+                type="password"
                 placeholder="Password"
                 onChange={e => setUserDetails({...userDetails, password: e.target.value})}
                 value={userDetails.password}

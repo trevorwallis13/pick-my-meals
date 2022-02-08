@@ -11,7 +11,7 @@ function MainNav({ signOut, signInStatus, setRoute}) {
         navList = (
             <ul>
                 <li>
-                    <Button variant='dark' size='large' className='sign-out-button' onClick={signOut}>
+                    <Button variant='dark' size='large' className='sign-out-btn btn' onClick={signOut}>
                         Sign out
                     </Button>
                 </li>
@@ -21,12 +21,12 @@ function MainNav({ signOut, signInStatus, setRoute}) {
         navList = (
             <ul>
                 <li>
-                    <Button variant='dark' size='large' className='sign-out-button' onClick={() => setRoute('register')}>
+                    <Button variant='dark' size='large' className='register-btn btn' onClick={() => setRoute('register')}>
                         Register
                     </Button>
                 </li>
                 <li>
-                    <Button variant='dark' size='large' className='sign-out-button' onClick={() => setRoute('signin')}>
+                    <Button variant='dark' size='large' className='sign-in-btn btn' onClick={() => setRoute('signin')}>
                         Sign in
                     </Button>
                 </li>
