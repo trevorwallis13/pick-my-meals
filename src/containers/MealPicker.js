@@ -108,7 +108,7 @@ const MealPicker = ({ currentUser}) => {
     }
 
     if(fromCalToUnused) {
-      let movedItem = calList.splice(sourceIdx, 1, "");
+      calList.splice(sourceIdx, 1, "");
       return setCalendarMeals(calList);
     }
   }
@@ -132,6 +132,34 @@ const MealPicker = ({ currentUser}) => {
   useEffect(() => {
     getUnusedMealList();
   }, [meals, calendarMeals, searchMeals]);
+
+  useEffect(() => {
+    fetch('http://localhost:3001/meals/calendar', {
+      method: "POST",
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({user_id: currentUser.id})
+    })
+      .then(res => res.json())
+      .then(data => {
+        setCalendarMeals(data.map(day => day.id ? day : ""))
+      })
+      .catch(err => console.error(err));
+  }, [currentUser])
+
+  useEffect(() => {
+    let calMealsData = calendarMeals.map((meal, i) => {
+      return {user_id: currentUser.id, day_of_week: i+1, meal_id: meal.id}
+    })
+
+    calMealsData.forEach(meal => {
+      fetch('http://localhost:3001/meals/calendar/save', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(meal)
+      })
+        .catch(err => console.error(err))
+    })
+  }, [calendarMeals])
 
   return (
     

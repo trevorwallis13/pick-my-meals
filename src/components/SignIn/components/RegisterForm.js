@@ -2,19 +2,20 @@ import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-const RegisterForm = ({ register, setRoute }) => {
+const RegisterForm = ({ register, error, setRoute }) => {
 
     const [newUserDetails, setNewUserDetails] = useState({name: '', email: '', password: ''})
 
     const handleRegister = (e) => {
         e.preventDefault();
         register(newUserDetails);
-        setNewUserDetails({email: '', password: ''});
+        setNewUserDetails({name: '', email: '', password: ''});
     }
     
   return(
     <Form onSubmit={handleRegister}>
         <h2>Register</h2>
+        {error}
         <Form.Group>
             <Form.Label>Name</Form.Label>
             <Form.Control

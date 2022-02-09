@@ -23,7 +23,7 @@ const App = () => {
         })
             .then(response => response.json())
             .then(user => {
-                if (user) {
+                if (user.id) {
                     setSignInStatus(true);
                     setCurrentUser(user);
                     setError('');
@@ -43,11 +43,14 @@ const App = () => {
         })
             .then(response => response.json())
             .then(user => {
-                if(user) {
+                if(user.id) {
                     setSignInStatus(true);
                     setCurrentUser(user);
+                    setError('');
                     setRoute("home");
-                }   
+                } else {
+                    setError("Invalid credentials!");
+                }
             });
     }
 
@@ -93,7 +96,7 @@ const App = () => {
     if(route === 'register') {
         return (
             <main>
-                <Register register={register} setRoute={setRoute}/>
+                <Register register={register} error={error} setRoute={setRoute}/>
             </main>
         )
     }
