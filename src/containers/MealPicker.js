@@ -116,7 +116,7 @@ const MealPicker = ({ currentUser}) => {
   // State management - useEffect on load
   
   useEffect(() => {
-    fetch('http://localhost:3001/meals', {
+    fetch('https://sleepy-island-59889.herokuapp.com/meals', {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({id: currentUser.id})
@@ -134,7 +134,7 @@ const MealPicker = ({ currentUser}) => {
   }, [meals, calendarMeals, searchMeals]);
 
   useEffect(() => {
-    fetch('http://localhost:3001/meals/calendar', {
+    fetch('https://sleepy-island-59889.herokuapp.com/meals/calendar', {
       method: "POST",
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({user_id: currentUser.id})
@@ -152,7 +152,7 @@ const MealPicker = ({ currentUser}) => {
     })
 
     calMealsData.forEach(meal => {
-      fetch('http://localhost:3001/meals/calendar/save', {
+      fetch('https://sleepy-island-59889.herokuapp.com/meals/calendar/save', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(meal)

@@ -13,7 +13,7 @@ const App = () => {
     
     const signIn = (userDetails) => {
 
-        fetch('http://localhost:3001/signin', {
+        fetch('https://sleepy-island-59889.herokuapp.com/signin', {
             method: "POST",
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -36,7 +36,7 @@ const App = () => {
 
     const register = (userDetails) => {
 
-        fetch('http://localhost:3001/register', {
+        fetch('https://sleepy-island-59889.herokuapp.com/register', {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(userDetails)

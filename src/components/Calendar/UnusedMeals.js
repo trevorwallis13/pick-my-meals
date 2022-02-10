@@ -14,23 +14,7 @@ const UnusedMeals = ({ unusedMeals, sortAscending, searchMeals, setSearchMeals }
     } else {
         mealVals = unusedMeals.map((meal, i) => <Meal key={meal.id} id={meal.id} img={meal.img} meal_name={meal.meal_name} prep_time={meal.prep_time} index={i}/>); 
     }
-
-    //  if (!unusedMeals.length) {
-    //     return (
-    //         <div className="unused-meals inner-container">
-    //             <div className="unused-header-section">
-    //                 <h3>Meals</h3>
-    //                 <Button variant="outline-dark" onClick={sortAscending}>Sort A-Z</Button>
-    //             </div>
-    //             <SearchMeal searchMeals={searchMeals} setSearchMeals={setSearchMeals}/>
-    //             <div className="unused-meals-container">
-    //                 <p>Add meals to get started!</p>
-    //             </div>  
-    //         </div>
-    //     )
-    // }
-
-
+    
     return (
         <div className='unused-meals inner-container'>
             <div className="unused-header-section">
