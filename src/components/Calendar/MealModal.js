@@ -26,7 +26,7 @@ const MealModal = ({ meals, setMeals, currentUser }) => {
 
         if (mealData.meal_name.length) {
 
-            fetch('http://localhost:3001/meals/new', {
+            fetch('https://sleepy-island-59889.herokuapp.com/meals/new', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(mealData)
