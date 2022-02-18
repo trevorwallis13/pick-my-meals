@@ -22,6 +22,7 @@
   },
   "scripts": {
     "start": "serve -s build",
+    "local": "react-scripts start",
     "dev": "react-scripts  build",
     "build": "react-scripts --max_old_space_size=4096 build",
     "test": "react-scripts test",

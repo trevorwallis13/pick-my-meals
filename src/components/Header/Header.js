@@ -6,7 +6,7 @@ function Header({ signOut, signInStatus, setRoute }) {
     return (
         <header className="main-header">
             <div className="header-container">
-                <h1>Meal Picker</h1>
+                <h1>Pick My Meals</h1>
                 <MainNav signOut={signOut} signInStatus={signInStatus} setRoute={setRoute}/>
             </div>
         </header>
