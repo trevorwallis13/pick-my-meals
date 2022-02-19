@@ -67,6 +67,8 @@ const MealPicker = ({ currentUser}) => {
   const onDragEnd = result => {
 
     const { destination, source } = result;
+
+    setSearchMeals('');
     
     let unusedList = Array.from(unusedMeals);
     let calList = Array.from(calendarMeals);
