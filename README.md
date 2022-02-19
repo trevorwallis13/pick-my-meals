@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://pickmymeals.herokuapp.com/">
-    <img src="logo.png" alt="Logo" width="80" height="80">
+    <img src="public/logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">Pick My Meals</h3>
@@ -172,4 +172,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[product-screenshot]: full-screenshot.png
+[product-screenshot]: public/full-screenshot.png
